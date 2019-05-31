@@ -13,7 +13,7 @@ C# 课程实验4
 
 ## 实现细节
 
-\1. 原要求为使用rgb三色显示，但灯共有5个，能表示的信息量不足，故使用5个分别的圆来替代，其中红色圆的代码如下（其它四个圆类似）
+1. 原要求为使用rgb三色显示，但灯共有5个，能表示的信息量不足，故使用5个分别的圆来替代，其中红色圆的代码如下（其它四个圆类似）
 
 ```xaml
 <Ellipse x:Name="redEllipse"
@@ -35,7 +35,7 @@ private void LightSlider_ValueChanged(object sender, RoutedPropertyChangedEventA
 }
 ```
 
-\2. 为了在发送/接收数据时使最新数据显示出来，需要将 ListView 滚动到最底部，而 ListView 并未直接提供该方法，可通过如下代码实现此功能：
+2. 为了在发送/接收数据时使最新数据显示出来，需要将 ListView 滚动到最底部，而 ListView 并未直接提供该方法，可通过如下代码实现此功能：
 
 ```C#
 private void ScrollToEnd(ListView listView) {
@@ -48,9 +48,9 @@ private void ScrollToEnd(ListView listView) {
 }
 ```
 
-\3. 在写入 log 时需要进行大量字符串的拼接，我在这里使用了 `StringBuilder` 以避免反复分配内存造成的时间消耗，并且把拼接字符串的工作分散到了每次收发信息的时候，减少了用户在试图保存大量 log 时的等待时间
+3. 在写入 log 时需要进行大量字符串的拼接，我在这里使用了 `StringBuilder` 以避免反复分配内存造成的时间消耗，并且把拼接字符串的工作分散到了每次收发信息的时候，减少了用户在试图保存大量 log 时的等待时间
 
-\4. 需要注意的是，`DataReceivedHandler` 执行时并不在主线程，而将数据写入到与控件进行了数据绑定的对象上的操作要求必须在主线程执行，所以需要使用 `Dispatcher.BeginInvoke()` 来避免问题的发生
+4. 需要注意的是，`DataReceivedHandler` 执行时并不在主线程，而将数据写入到与控件进行了数据绑定的对象上的操作要求必须在主线程执行，所以需要使用 `Dispatcher.BeginInvoke()` 来避免问题的发生
 
 ## 项目特色
 
